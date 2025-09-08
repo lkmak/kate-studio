@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oil Paintings Portfolio</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts - Dancing Script (for all text) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Dancing Script', cursive;
+        }
+        /* Page styling */
+        .section {
+            min-height: 100vh;
+            padding-top: 6rem;
+        }
+        /* About page background */
+        #about-page {
+            background-color: #000; /* Solid black background */
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+        #about-page .content-wrapper {
+            position: relative;
+            z-index: 10;
+            max-width: 700px;
+            padding: 2rem;
+            border-radius: 1rem;
+        }
+        /* New styling for the intro page with an image */
+        #intro-page {
+            background-image: url('https://drive.google.com/file/d/1e9-x0ZAsgYDIqw4zwV5fRhfjcBj3F0wM/view?usp=sharing');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+        .intro-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5); /* A semi-transparent black overlay for text readability */
+        }
+        /* New styles for image dimming on hover */
+        .painting-card img {
+            opacity: 0.5; /* Initial dimming */
+            transition: opacity 0.3s ease-in-out; /* Smooth transition */
+        }
+        .painting-card:hover img {
+            opacity: 1.0; /* Full visibility on hover */
+        }
+    </style>
+</head>
+<body class="bg-black text-white antialiased text-xl">
+
+    <!-- Top-Right Navigation -->
+    <nav class="fixed top-0 right-0 p-6 z-50">
+        <!-- Menu Toggle Button (Hamburger Icon) -->
+        <button id="menu-toggle" class="text-white hover:text-gray-400 transition-colors duration-300 focus:outline-none">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-10 h-10">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+            </svg>
+        </button>
+
+        <!-- Menu Items (Initially Hidden) -->
+        <ul id="menu-items" class="absolute top-full right-0 mt-2 hidden flex-col space-y-4 text-center p-4 rounded-xl bg-gray-900 bg-opacity-70">
+            <li>
+                <a href="#intro-page" title="Home" class="text-white hover:text-gray-400 transition-colors duration-300">Home</a>
+            </li>
+            <li>
+                <a href="#portfolio-page" title="Paintings" class="text-white hover:text-gray-400 transition-colors duration-300">Paintings</a>
+            </li>
+            <li>
+                <a href="#about-page" title="About" class="text-white hover:text-gray-400 transition-colors duration-300">About</a>
+            </li>
+            <li>
+                <a href="#contact-page" title="Contact" class="text-white hover:text-gray-400 transition-colors duration-300">Contact</a>
+            </li>
+        </ul>
+    </nav>
+
+    <main class="max-w-none">
+
+        <!-- Intro Page as Full-screen Background -->
+        <section id="intro-page" class="relative min-h-screen flex items-center justify-center">
+            <!-- The overlay is still present to keep the nav menu readable -->
+            <div class="intro-overlay"></div>
+            <!-- All text has been removed from this section -->
+        </section>
+
+        <!-- Portfolio Page -->
+        <section id="portfolio-page" class="section py-12 px-4">
+            <h2 class="text-3xl font-bold text-gray-100 text-center mb-8">oil paintings</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+
+                <!-- Painting Card 1 (Vertical) -->
+                <div class="rounded-xl transform transition-all hover:scale-105 duration-300 painting-card">
+                    <img src="https://drive.google.com/file/d/1mzpwYceiJxu_jqDZqUqufggFxhgEJTpz/view?usp=sharing" alt="Painting Title 1" class="w-full object-cover rounded-xl">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-gray-100”>”Dream”</h3>
+                        <p class="text-sm text-gray-400 mt-1">Oil on canvas | 40cm x 50cm” | 2025</p>
+                    </div>
+                </div>
+
+                <!-- Painting Card 2 (Vertical) -->
+                <div class="rounded-xl transform transition-all hover:scale-105 duration-300 painting-card">
+                    <img src="https://drive.google.com/file/d/1Sx4aT_T56ZrNjT6wkFc80ookfoa6qzLE/view?usp=sharing" alt="Painting Title 2" class="w-full object-cover rounded-xl">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-gray-100”>”Life”</h3>
+                        <p class="text-sm text-gray-400 mt-1">Oil on canvas | 40cm x 70cm” | 2025</p>
+                    </div>
+                </div>
+
+                <!-- Painting Card 3 (Vertical) -->
+                <div class="rounded-xl transform transition-all hover:scale-105 duration-300 painting-card">
+                    <img src="https://drive.google.com/file/d/1r0E7ZcuY2qKDEkkdMzD0AR2O8uKtIE_i/view?usp=sharing" alt="Painting Title 3" class="w-full object-cover rounded-xl">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-gray-100”>”Connection”</h3>
+                        <p class="text-sm text-gray-400 mt-1">Oil on canvas | 40cm x 70cm” | 2025</p>
+                    </div>
+                </div>
+                
+                <!-- Painting Card 4 (Square) -->
+                <div class="rounded-xl transform transition-all hover:scale-105 duration-300 painting-card">
+                    <img src="https://drive.google.com/file/d/1h2vq54vaODUpDQaFBWlyacxXH0N37d0I/view?usp=sharing" alt="Painting Title 4" class="w-full object-cover rounded-xl">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-gray-100”>”Untitled”</h3>
+                        <p class="text-sm text-gray-400 mt-1">Oil on canvas | 50cm x 50cm | 2025</p>
+                    </div>
+                </div>
+
+                <!-- Painting Card 5 (Square) -->
+                <div class="rounded-xl transform transition-all hover:scale-105 duration-300 painting-card">
+                    <img src="https://drive.google.com/file/d/1T0AQYaDysxAMGrm9usnq0tIWu9NSpNGo/view?usp=sharing" alt="Painting Title 5" class="w-full object-cover rounded-xl">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-gray-100”>”Vitali”ty</h3>
+                        <p class="text-sm text-gray-400 mt-1">Oil on canvas | 24" x 24" | 2025</p>
+                    </div>
+                </div>
+
+—                <!-- Painting Card 6 (Square) -->
+—                <div class="rounded-xl transform transition-all hover:scale-105 duration-300 painting-card">
+—                    <img src="https://placehold.co/600x600/60a5fa/1f2937?text=Painting+6" alt="Painting Title 6" class="w-full object-cover rounded-xl">
+—                    <div class="p-6">
+—                        <h3 class="text-xl font-semibold text-gray-100">"Title of Painting 6"</h3>
+—                       <p class="text-sm text-gray-400 mt-1">Oil on canvas | 40" x 40" | 2025</p>
+—                    </div>
+—                </div>
+
+            </div>
+        </section>
+
+        <!-- about me Page -->
+        <section id="about-page" class="section flex items-center justify-center px-4">
+            <div class="content-wrapper">
+                <h2 class="text-2xl font-semibold text-gray-100 mb-2">about me</h2>
+                <p class="text-xl text-gray-400 leading-relaxed mt-4">I am an emerging oil painter drawn to the language of abstraction as a way to explore emotion, identity, and movement. My work often arises from a deeply intuitive process—layers of color, texture, and form that express what words cannot.
+As someone who also practices contemporary and hip-hop dance, I am fascinated by how the body carries feeling. That physicality naturally finds its way into my paintings. Viewers often say they can feel movement within the brushstrokes — a gesture frozen in time, a rhythm lingering on canvas.
+My paintings are less about representation and more about release — of emotion, memory, self. I do not begin with a final image in mind; instead, I follow feeling, letting it guide me toward something raw and honest.
+This journey as an artist is still unfolding. Each canvas is a new conversation with myself, and I invite the viewer to join in — not to find answers, but to feel something real.
+</p>
+            </div>
+        </section>
+
+        <!-- Contact Page -->
+        <section id="contact-page" class="section text-center flex items-center justify-center px-4">
+            <div class="flex flex-col items-center w-full max-w-2xl mx-auto">
+                <h2 class="text-3xl font-bold text-gray-100 mb-4">Let's Connect</h2>
+                <p class="text-gray-400 mb-6">I'd love to hear your thoughts on my work or share our creative experiences. Feel free to send a message!</p>
+                
+                <!-- Contact Form -->
+                <form id="contact-form" action="https://formspree.io/f/katelkmak52@gmail.com” method="POST" class="w-full space-y-4">
+                    <!-- Name Input -->
+                    <div>
+                        <input type="text" id="name" name="name" placeholder="Your Name" class="w-full p-3 rounded-lg bg-transparent text-white placeholder-white focus:outline-none focus:ring-2 focus:ring-gray-600 border border-dashed border-gray-400" required>
+                    </div>
+                    <!-- Email Input -->
+                    <div>
+                        <input type="email" id="email" name="email" placeholder="Your Email" class="w-full p-3 rounded-lg bg-transparent text-white placeholder-white focus:outline-none focus:ring-2 focus:ring-gray-600 border border-dashed border-gray-400" required>
+                    </div>
+                    <!-- Message Textarea -->
+                    <div>
+                        <textarea id="message" name="message" rows="5" placeholder="Your Message" class="w-full p-3 rounded-lg bg-transparent text-white placeholder-white focus:outline-none focus:ring-2 focus:ring-gray-600 border border-dashed border-gray-400" required></textarea>
+                    </div>
+                    <!-- Submit Button -->
+                    <button type="submit" class="w-full py-3 rounded-lg bg-transparent text-white font-semibold transition-colors duration-300 border border-dashed border-white hover:bg-white hover:text-black">
+                        Send Message
+                    </button>
+                </form>
+
+                <!-- Message container for success/error messages -->
+                <div id="form-message" class="mt-4 p-4 rounded-lg text-sm bg-gray-800 text-white hidden"></div>
+
+                <div class="flex items-center space-x-6 mt-6">
+                    <!-- Email Icon -->
+                    <a href="katelkmak52@gmail.com" class="text-gray-400 hover:text-white transition-colors duration-300">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-10 h-10" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M2.003 5.884L10 9.882l8-3.998A2 2 0 0120 7v10a2 2 0 01-2 2H4a2 2 0 01-2-2V7a2 2 0 01.003-1.116zM18 9.5l-6 3-6-3V7l6 3 6-3v2.5z"/>
+                        </svg>
+                    </a>
+                    <!-- Instagram Icon -->
+                    <a href="https://instagram.com/katemak_20” class="text-gray-400 hover:text-white transition-colors duration-300">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-10 h-10" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 2c2.716 0 3.056.012 4.12.06c1.064.049 1.79.208 2.378.438.59.23 1.05.518 1.516.984.466.466.754.926.984 1.516.23.588.389 1.314.438 2.378.048 1.064.06 1.404.06 4.12s-.012 3.056-.06 4.12c-.049 1.064-.208 1.79-.438 2.378-.23.59-.518 1.05-.984 1.516-.466.466-.754.926-.984 1.516-.23.588-.389 1.314-.438 2.378-.048 1.064-.06 1.404-.06 4.12s.012 3.056.06 4.12c.049 1.064.208 1.79.438 2.378.23-.59.518-1.05.984-1.516-.466.466-.754.926-.984 1.516-.23.588-.389 1.314-.438 2.378-.048 1.064-.06 1.404-.06 4.12s.012 3.056.06 4.12c.049 1.064.208 1.79.438 2.378.23-.59.518-1.05.984-1.516-.466.466-.754.926-.984 1.516-.23.588-.389 1.314-.438 2.378-.048 1.064-.06 1.404-.06 4.12s-.012 3.056-.057 3.924c-.048 1.037-.196 1.536-.349 1.928-.153.393-.348.715-.659 1.026-.311.311-.633.506-1.026.659-.392.153-.891.301-1.928.349-1.037.047-1.311.057-3.924.057s-2.887-.01-3.924-.057c-1.037-.048-1.536-.196-1.928-.349-.393-.153-.715-.348-1.026-.659-.311-.311-.506-.633-.659-1.026-.153-.392-.301-.891-.349-1.928-.047-1.037-.057-1.311-.057-3.924s-.01-2.887-.057-3.924c-.048-1.037-.196-1.536-.349-1.928-.153-.393-.348-.715-.659-1.026-.311-.311-.506-.633-.659-1.026-.392-.153-.891-.301-1.928-.349C9.113 4.238 9.287 4.238 12 4.238zm-1.849 2.195c-.845-.045-1.57.175-1.97.472-.4.297-.597.587-.714.86-.117.274-.153.518-.172.686-.02.167-.023.238-.023.336s.003.169.023.336c.019.168.055.412.172.686.117.273.314.563.714.86.4.297 1.125.517 1.97.472 1.346-.073 1.92-.158 2.502-.27s1.173-.284 1.83-.55c.658-.266 1.13-.578 1.53-.875.4-.297.597-.587.714-.86.117-.274.153-.518.172.686.02-.167.023.238.023.336s-.003-.169-.023-.336c-.019-.168-.055-.412-.172-.686-.117-.273-.314-.563-.714-.86-.4-.297-1.125-.517-1.97-.472-1.346.073-1.92.158-2.502.27s-1.173.284-1.83.55c-.658.266-1.13.578-1.53.875-.4.297-.597.587-.714.86-.117.274-.153.518-.172.686-.02.167-.023.238-.023.336s.003.169.023.336c.019.168.055.412.172.686.117.273.314.563.714.86.4.297 1.125.517 1.97.472zm-2.151 5.485a3.17 3.17 0 116.34 0 3.17 3.17 0 01-6.34 0zM12 15.5c-1.933 0-3.5-1.567-3.5-3.5s1.567-3.5 3.5-3.5 3.5 1.567 3.5 3.5-1.567 3.5-3.5 3.5z"/>
+                        </svg>
+                    </a>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="fixed bottom-4 right-4 p-4 text-gray-400 text-sm">
+        <p>&copy; 2025 Lai Ki (Kate)'s art portfolio</p>
+    </footer>
+
+    <script type="text/javascript">
+        const menuToggle = document.getElementById('menu-toggle');
+        const menuItems = document.getElementById('menu-items');
+        const contactForm = document.getElementById('contact-form');
+        const formMessage = document.getElementById('form-message');
+
+        // Close menu when a link is clicked (for better mobile experience)
+        menuToggle.addEventListener('click', () => {
+            menuItems.classList.toggle('hidden');
+        });
+
+        const menuLinks = menuItems.querySelectorAll('a');
+        menuLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                menuItems.classList.add('hidden');
+            });
+        });
+
+        // Contact form submission handling
+        contactForm.addEventListener('submit', async function(event) {
+            event.preventDefault(); 
+            
+            // Show a temporary "Sending..." message
+            formMessage.textContent = 'Sending your message...';
+            formMessage.classList.remove('hidden');
+
+            try {
+                const response = await fetch(contactForm.action, {
+                    method: 'POST',
+                    body: new FormData(contactForm),
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+
+                if (response.ok) {
+                    formMessage.textContent = 'Thank you! Your message has been sent successfully.';
+                } else {
+                    formMessage.textContent = 'There was an error sending your message. Please try again later.';
+                }
+
+                // Clear the form and hide the message after a short delay
+                setTimeout(() => {
+                    contactForm.reset();
+                    formMessage.classList.add('hidden');
+                }, 3000);
+
+            } catch (e) {
+                console.error("Error sending form: ", e);
+                formMessage.textContent = 'There was an error sending your message. Please try again later.';
+
+                // Hide the message after a short delay on error as well
+                setTimeout(() => {
+                    formMessage.classList.add('hidden');
+                }, 3000);
+            }
+        });
+    </script>
+</body>
+</html>
+
