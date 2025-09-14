@@ -17,8 +17,7 @@
             background-color: #000;
             color: #fff;
             font-family: 'Vollkorn', serif;
-            /* Prevent the entire page from scrolling */
-            overflow: hidden; 
+            overflow: hidden;
         }
 
         /* Container for all sections */
@@ -33,7 +32,7 @@
         /* Section styling for full-page layout */
         .section {
             min-height: 100vh;
-            display: none; /* Hide all sections by default */
+            display: none;
             flex-direction: column;
             align-items: center;
             justify-content: center;
@@ -44,10 +43,10 @@
 
         /* Only the active section will be shown and scrollable */
         .section.active {
-            display: flex; /* Show the active section */
-            overflow-y: auto; /* Allow scrolling within this section */
-            height: 100vh; /* Ensure it fills the viewport */
-            -webkit-overflow-scrolling: touch; /* for smooth scrolling on iOS */
+            display: flex;
+            overflow-y: auto;
+            height: 100vh;
+            -webkit-overflow-scrolling: touch;
         }
 
         /* Fixed elements */
@@ -151,7 +150,7 @@
     </style>
 </head>
 <body>
-    
+
     <div class="content-container">
         <section id="intro-page" class="section">
             <div class="intro-overlay"></div>
@@ -237,8 +236,8 @@
                 </div>
             </div>
         </section>
-    </div> 
-    
+    </div>
+
     <nav id="main-nav" class="nav-menu">
         <ul>
             <li><a href="#" data-target="intro-page" class="nav-link">Home</a></li>
@@ -270,9 +269,7 @@
         const hamburgerIcon = document.getElementById('hamburger-icon');
         const closeIcon = document.getElementById('close-icon');
         const sections = document.querySelectorAll('.section');
-        const contentContainer = document.querySelector('.content-container');
 
-        // Function to show a specific section
         function showSection(targetId) {
             sections.forEach(section => {
                 section.classList.remove('active');
@@ -280,43 +277,39 @@
             const targetSection = document.getElementById(targetId);
             if (targetSection) {
                 targetSection.classList.add('active');
-                
-                // Use scrollIntoView with 'auto' behavior for instant scrolling
-                if (targetId === 'paintings-section') {
-                    const firstPainting = document.getElementById('painting-1');
-                    if (firstPainting) {
-                        firstPainting.scrollIntoView({ behavior: 'auto', block: 'start' });
+
+                setTimeout(() => {
+                    if (targetId === 'paintings-section') {
+                        const firstPainting = document.getElementById('painting-1');
+                        if (firstPainting) {
+                            firstPainting.scrollIntoView({ behavior: 'auto', block: 'start' });
+                        }
+                    } else {
+                        targetSection.scrollTo({ top: 0, behavior: 'auto' });
                     }
-                } else {
-                    targetSection.scrollIntoView({ behavior: 'auto', block: 'start' });
-                }
+                }, 10);
             }
         }
 
-        // Toggle menu visibility
         menuToggle.addEventListener('click', () => {
             mainNav.classList.toggle('active');
             hamburgerIcon.classList.toggle('hidden');
             closeIcon.classList.toggle('hidden');
         });
 
-        // Handle navigation link clicks
         navLinks.forEach(link => {
             link.addEventListener('click', (event) => {
-                event.preventDefault(); 
+                event.preventDefault();
                 const targetId = link.getAttribute('data-target');
                 showSection(targetId);
-                // Hide menu after a selection is made
                 mainNav.classList.remove('active');
                 hamburgerIcon.classList.remove('hidden');
                 closeIcon.classList.add('hidden');
             });
         });
 
-        // Show the intro page when the site loads
         showSection('intro-page');
 
-        // Contact form submission logic
         const contactForm = document.getElementById('contact-form');
         const formMessage = document.getElementById('form-message');
 
