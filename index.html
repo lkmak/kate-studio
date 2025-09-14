@@ -38,7 +38,7 @@
             align-items: center;
             justify-content: center;
             text-align: center;
-            padding: 1.5rem 1.5rem 12rem 1.5rem; /* Increased bottom padding */
+            padding: 1.5rem 1.5rem 12rem 1.5rem;
         }
         .section:not(.active-section) {
             display: none;
@@ -119,15 +119,18 @@
             max-width: 700px;
             padding: 2rem;
         }
+        .painting-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
         .painting-card img {
             opacity: 0.5;
             transition: opacity 0.3s ease-in-out;
+            max-width: 80%;
         }
         .painting-card:hover img {
             opacity: 1.0;
-        }
-        .portfolio-grid {
-            padding: 2rem;
         }
     </style>
 </head>
@@ -139,43 +142,50 @@
             <div class="intro-overlay"></div>
         </section>
 
-        <section id="portfolio-page" class="section">
-            <div class="portfolio-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-24 max-w-7xl mx-auto py-22 px-6">
-                <div class="rounded-xl transform transition-all hover:scale-105 duration-300 painting-card">
-                    <img src="life.jpg" alt="Painting Title 2" class="w-3/4 object-cover">
-                    <div class="p-6">
-                        <h3 class="text-sm font-semibold text-gray-100 italic">Life</h3>
-                        <p class="text-xs text-gray-400 mt-1">oil on canvas</p>
-                        <p class="text-xs text-gray-400 mt-1">40cm x 70cm</p>
-                        <p class="text-xs text-gray-400 mt-1">2025</p>
-                    </div>
+        <section id="painting-1" class="section">
+            <div class="painting-card">
+                <img src="life.jpg" alt="Painting Title 2" class="w-3/4 object-cover">
+                <div class="p-6">
+                    <h3 class="text-sm font-semibold text-gray-100 italic">Life</h3>
+                    <p class="text-xs text-gray-400 mt-1">oil on canvas</p>
+                    <p class="text-xs text-gray-400 mt-1">40cm x 70cm</p>
+                    <p class="text-xs text-gray-400 mt-1">2025</p>
                 </div>
-                <div class="rounded-xl transform transition-all hover:scale-105 duration-300 painting-card">
-                    <img src="connection.jpg" alt="Painting Title 3" class="w-3/4 object-cover">
-                    <div class="p-6">
-                        <h3 class="text-sm font-semibold text-gray-100 italic">Connection</h3>
-                        <p class="text-xs text-gray-400 mt-1">oil on canvas</p>
-                        <p class="text-xs text-gray-400 mt-1">40cm x 70cm</p>
-                        <p class="text-xs text-gray-400 mt-1">2025</p>
-                    </div>
+            </div>
+        </section>
+
+        <section id="painting-2" class="section">
+            <div class="painting-card">
+                <img src="connection.jpg" alt="Painting Title 3" class="w-3/4 object-cover">
+                <div class="p-6">
+                    <h3 class="text-sm font-semibold text-gray-100 italic">Connection</h3>
+                    <p class="text-xs text-gray-400 mt-1">oil on canvas</p>
+                    <p class="text-xs text-gray-400 mt-1">40cm x 70cm</p>
+                    <p class="text-xs text-gray-400 mt-1">2025</p>
                 </div>
-                <div class="rounded-xl transform transition-all hover:scale-105 duration-300 painting-card">
-                    <img src="untitled.jpg" alt="Painting Title 4" class="w-3/4 object-cover">
-                    <div class="p-6">
-                        <h3 class="text-sm font-semibold text-gray-100 italic">Untitled</h3>
-                        <p class="text-xs text-gray-400 mt-1">oil on canvas</p>
-                        <p class="text-xs text-gray-400 mt-1">50cm x 50cm</p>
-                        <p class="text-xs text-gray-400 mt-1">2025</p>
-                    </div>
+            </div>
+        </section>
+
+        <section id="painting-3" class="section">
+            <div class="painting-card">
+                <img src="untitled.jpg" alt="Painting Title 4" class="w-3/4 object-cover">
+                <div class="p-6">
+                    <h3 class="text-sm font-semibold text-gray-100 italic">Untitled</h3>
+                    <p class="text-xs text-gray-400 mt-1">oil on canvas</p>
+                    <p class="text-xs text-gray-400 mt-1">50cm x 50cm</p>
+                    <p class="text-xs text-gray-400 mt-1">2025</p>
                 </div>
-                <div class="rounded-xl transform transition-all hover:scale-105 duration-300 painting-card">
-                    <img src="vitality.jpg" alt="Painting Title 5" class="w-3/4 object-cover">
-                    <div class="p-6">
-                        <h3 class="text-sm font-semibold text-gray-100 italic">Vitality</h3>
-                        <p class="text-xs text-gray-400 mt-1">oil on canvas</p>
-                        <p class="text-xs text-gray-400 mt-1">40cm x 40cm</p>
-                        <p class="text-xs text-gray-400 mt-1">2025</p>
-                    </div>
+            </div>
+        </section>
+
+        <section id="painting-4" class="section">
+            <div class="painting-card">
+                <img src="vitality.jpg" alt="Painting Title 5" class="w-3/4 object-cover">
+                <div class="p-6">
+                    <h3 class="text-sm font-semibold text-gray-100 italic">Vitality</h3>
+                    <p class="text-xs text-gray-400 mt-1">oil on canvas</p>
+                    <p class="text-xs text-gray-400 mt-1">40cm x 40cm</p>
+                    <p class="text-xs text-gray-400 mt-1">2025</p>
                 </div>
             </div>
         </section>
@@ -231,7 +241,7 @@
     </div> <nav id="main-nav" class="nav-menu">
         <ul>
             <li><a href="#" data-target="intro-page" class="nav-link">Home</a></li>
-            <li><a href="#" data-target="portfolio-page" class="nav-link">Paintings</a></li>
+            <li><a href="#" data-target="painting-1" class="nav-link">Paintings</a></li>
             <li><a href="#" data-target="about-page" class="nav-link">About</a></li>
             <li><a href="#" data-target="contact-page" class="nav-link">Contact</a></li>
         </ul>
