@@ -126,20 +126,18 @@
             padding: 2rem;
         }
 
-        /* NEW: Styles for the paintings section and cards */
+        /* Styles for the paintings section and cards */
         #paintings-section.active {
-            /* Enable vertical snap scrolling for the paintings section */
             scroll-snap-type: y mandatory;
         }
 
         .painting-card {
-            min-height: 100vh; /* Make each painting card a full "page" */
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             text-align: center;
-            /* Snap each card to the center of the viewport */
             scroll-snap-align: center;
             padding: 1.5rem;
         }
@@ -282,8 +280,11 @@
             const targetSection = document.getElementById(targetId);
             if (targetSection) {
                 targetSection.classList.add('active');
-                // Scroll to the top of the newly active section
-                targetSection.scrollTop = 0; 
+                
+                // Use requestAnimationFrame to ensure the scroll happens after the next repaint
+                window.requestAnimationFrame(() => {
+                    targetSection.scrollTop = 0;
+                });
             }
         }
 
