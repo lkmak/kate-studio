@@ -38,8 +38,7 @@
             align-items: center;
             justify-content: center;
             text-align: center;
-            padding: 1.5rem;
-            /* Hide scrollbars by default, until a section is made active */
+            padding: 1.5rem 1.5rem 12rem 1.5rem;
             overflow-y: hidden;
         }
 
@@ -126,11 +125,25 @@
             max-width: 700px;
             padding: 2rem;
         }
+
+        /* NEW: Styles for the paintings section and cards */
+        #paintings-section.active {
+            /* Enable vertical snap scrolling for the paintings section */
+            scroll-snap-type: y mandatory;
+        }
+
         .painting-card {
+            min-height: 100vh; /* Make each painting card a full "page" */
             display: flex;
             flex-direction: column;
             align-items: center;
+            justify-content: center;
+            text-align: center;
+            /* Snap each card to the center of the viewport */
+            scroll-snap-align: center;
+            padding: 1.5rem;
         }
+
         .painting-card img {
             max-width: 80%;
             height: auto;
@@ -146,7 +159,7 @@
             <div class="intro-overlay"></div>
         </section>
 
-        <section id="painting-1" class="section">
+        <section id="paintings-section" class="section">
             <div class="painting-card">
                 <img src="life.jpg" alt="Life" class="max-h-[80vh] w-auto">
                 <div class="p-6">
@@ -156,9 +169,6 @@
                     <p class="text-xs text-gray-400 mt-1">2025</p>
                 </div>
             </div>
-        </section>
-
-        <section id="painting-2" class="section">
             <div class="painting-card">
                 <img src="connection.jpg" alt="Connection" class="max-h-[80vh] w-auto">
                 <div class="p-6">
@@ -168,9 +178,6 @@
                     <p class="text-xs text-gray-400 mt-1">2025</p>
                 </div>
             </div>
-        </section>
-
-        <section id="painting-3" class="section">
             <div class="painting-card">
                 <img src="untitled.jpg" alt="Untitled" class="max-h-[80vh] w-auto">
                 <div class="p-6">
@@ -180,9 +187,6 @@
                     <p class="text-xs text-gray-400 mt-1">2025</p>
                 </div>
             </div>
-        </section>
-
-        <section id="painting-4" class="section">
             <div class="painting-card">
                 <img src="vitality.jpg" alt="Vitality" class="max-h-[80vh] w-auto">
                 <div class="p-6">
@@ -235,13 +239,12 @@
                 </div>
             </div>
         </section>
-
     </div> 
     
     <nav id="main-nav" class="nav-menu">
         <ul>
             <li><a href="#" data-target="intro-page" class="nav-link">Home</a></li>
-            <li><a href="#" data-target="painting-1" class="nav-link">Paintings</a></li>
+            <li><a href="#" data-target="paintings-section" class="nav-link">Paintings</a></li>
             <li><a href="#" data-target="about-page" class="nav-link">About</a></li>
             <li><a href="#" data-target="contact-page" class="nav-link">Contact</a></li>
         </ul>
