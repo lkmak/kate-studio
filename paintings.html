@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lai Ki :) Kate - Paintings</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Vollkorn:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #000;
+            color: #fff;
+            font-family: 'Vollkorn', serif;
+        }
+        .main-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 1.5rem 1.5rem;
+            display: grid;
+            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        }
+        .painting-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 1rem;
+            border: 1px dashed #333;
+            border-radius: 0.5rem;
+        }
+        .painting-card img {
+            max-width: 100%;
+            height: auto;
+            object-fit: contain;
+            transition: opacity 0.3s ease-in-out;
+        }
+        .fixed-footer, .menu-toggle-container, .nav-menu {
+            position: fixed;
+            z-index: 100;
+        }
+        .fixed-footer {
+            bottom: 1.5rem;
+            right: 1.5rem;
+            color: #9ca3af;
+            font-size: 0.875rem;
+        }
+        .menu-toggle-container {
+            top: 1.5rem;
+            right: 1.5rem;
+        }
+        .nav-menu {
+            top: 0;
+            right: 0;
+            background-color: rgba(0, 0, 0, 0.9);
+            padding: 4.5rem 1.5rem 1.5rem;
+            border-bottom-left-radius: 1rem;
+            transform: translateX(100%);
+            transition: transform 0.3s ease-in-out;
+        }
+        .nav-menu.active {
+            transform: translateX(0);
+        }
+        .nav-menu ul {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            text-align: right;
+        }
+        .nav-menu a {
+            text-decoration: none;
+            color: #fff;
+            font-size: 0.875rem;
+            font-weight: normal;
+            transition: color 0.3s;
+        }
+        .nav-menu a:hover {
+            color: #aaa;
+        }
+        #hamburger-icon { display: block; }
+        #close-icon { display: none; }
+        .nav-menu.active #hamburger-icon { display: none; }
+        .nav-menu.active #close-icon { display: block; }
+    </style>
+</head>
+<body>
+    <div class="main-content">
+        <div class="painting-card">
+            <img src="life.jpg" alt="Life">
+            <div class="p-6">
+                <h3 class="text-sm font-semibold text-gray-100 italic">Life</h3>
+                <p class="text-xs text-gray-400 mt-1">oil on canvas</p>
+                <p class="text-xs text-gray-400 mt-1">40cm x 70cm</p>
+                <p class="text-xs text-gray-400 mt-1">2025</p>
+            </div>
+        </div>
+        <div class="painting-card">
+            <img src="connection.jpg" alt="Connection">
+            <div class="p-6">
+                <h3 class="text-sm font-semibold text-gray-100 italic">Connection</h3>
+                <p class="text-xs text-gray-400 mt-1">oil on canvas</p>
+                <p class="text-xs text-gray-400 mt-1">40cm x 70cm</p>
+                <p class="text-xs text-gray-400 mt-1">2025</p>
+            </div>
+        </div>
+        <div class="painting-card">
+            <img src="untitled.jpg" alt="Untitled">
+            <div class="p-6">
+                <h3 class="text-sm font-semibold text-gray-100 italic">Untitled</h3>
+                <p class="text-xs text-gray-400 mt-1">oil on canvas</p>
+                <p class="text-xs text-gray-400 mt-1">50cm x 50cm</p>
+                <p class="text-xs text-gray-400 mt-1">2025</p>
+            </div>
+        </div>
+        <div class="painting-card">
+            <img src="vitality.jpg" alt="Vitality">
+            <div class="p-6">
+                <h3 class="text-sm font-semibold text-gray-100 italic">Vitality</h3>
+                <p class="text-xs text-gray-400 mt-1">oil on canvas</p>
+                <p class="text-xs text-gray-400 mt-1">40cm x 40cm</p>
+                <p class="text-xs text-gray-400 mt-1">2025</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="menu-toggle-container">
+        <button id="menu-toggle" class="text-white hover:text-gray-400 transition-colors duration-300 focus:outline-none">
+            <svg id="hamburger-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+            </svg>
+            <svg id="close-icon" class="w-6 h-6 hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+        </button>
+    </div>
+
+    <nav id="main-nav" class="nav-menu">
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="paintings.html">Paintings</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+
+    <footer class="fixed-footer">
+        <p>&copy; 2025 Lai Ki (Kate)'s art portfolio</p>
+    </footer>
+
+    <script>
+        const mainNav = document.getElementById('main-nav');
+        const menuToggle = document.getElementById('menu-toggle');
+        menuToggle.addEventListener('click', () => {
+            mainNav.classList.toggle('active');
+        });
+    </script>
+</body>
+</html>
