@@ -40,11 +40,20 @@
             scroll-snap-align: start;
         }
 
-        /* Intro page specific background image */
+        /* Intro page specific styling - NO BACKGROUND IMAGE HERE */
         #intro-page {
-            background-image: url('bobobobo.jpg');
-            background-size: cover;
-            background-position: center;
+            overflow: hidden;
+            background-color: transparent;
+        }
+
+        #intro-page .front-page-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 0;
         }
 
         .intro-overlay {
@@ -53,15 +62,10 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            z-index: 0;
-        }
-
-        #intro-page h1, #intro-page p {
-            position: relative;
+            background-color: rgba(0, 0, 0, 0.2);
             z-index: 1;
         }
-
+        
         /* Styling for each individual painting section */
         .painting-section {
             display: flex;
@@ -182,6 +186,7 @@
     <main class="content-container">
 
         <section id="intro-page" class="section">
+            <img src="bobobobo.jpg" alt="Front Page Background" class="front-page-image">
             <div class="intro-overlay"></div>
         </section>
 
