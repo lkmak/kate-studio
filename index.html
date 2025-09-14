@@ -158,7 +158,7 @@
         </section>
 
         <section id="paintings-section" class="section">
-            <div class="painting-card">
+            <div id="painting-1" class="painting-card">
                 <img src="life.jpg" alt="Life" class="max-h-[80vh] w-auto">
                 <div class="p-6">
                     <h3 class="text-sm font-semibold text-gray-100 italic">Life</h3>
@@ -281,10 +281,15 @@
             if (targetSection) {
                 targetSection.classList.add('active');
                 
-                // Use requestAnimationFrame to ensure the scroll happens after the next repaint
-                window.requestAnimationFrame(() => {
-                    targetSection.scrollTop = 0;
-                });
+                // Use scrollIntoView to reliably show the top of the section
+                if (targetId === 'paintings-section') {
+                    const firstPainting = document.getElementById('painting-1');
+                    if (firstPainting) {
+                        firstPainting.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                } else {
+                    targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
             }
         }
 
