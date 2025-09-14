@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Vollkorn:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
     <style>
-        /* Base styles */
+        /* Base styles for a full-screen, scrollable experience */
         html, body {
             height: 100%;
             margin: 0;
@@ -17,6 +17,8 @@
             background-color: #000;
             color: #fff;
             font-family: 'Vollkorn', serif;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
         }
 
         /* Dedicated full-screen background layer */
@@ -26,41 +28,30 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: url('bobo_new.jpg');
+            background-image: url('bobo.jpg');
             background-size: cover;
             background-position: center;
             z-index: -1;
         }
 
-        /* Container for all sections */
-        .content-container {
-            position: relative;
-            height: 100vh;
-        }
-
-        /* Section styling for full-page layout using transform for smooth transitions */
+        /* Full-page section styling */
         .section {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
             height: 100vh;
+            width: 100vw;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             text-align: center;
             padding: 1.5rem;
-            overflow-y: hidden;
-            transition: transform 0.5s ease-in-out;
-            transform: translateY(100%); /* Initially off-screen at the bottom */
+            position: relative;
         }
 
-        /* The active section slides into view */
-        .section.active {
-            transform: translateY(0);
-            overflow-y: auto;
-            -webkit-overflow-scrolling: touch;
+        /* Specific styles for the intro page to ensure content is centered vertically */
+        #intro-page {
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
         /* Fixed elements */
@@ -80,6 +71,7 @@
             right: 1.5rem;
             z-index: 101;
         }
+
         .nav-menu {
             position: fixed;
             top: 0;
@@ -94,9 +86,11 @@
             transform: translateX(100%);
             transition: transform 0.3s ease-in-out;
         }
+
         .nav-menu.active {
             transform: translateX(0);
         }
+
         .nav-menu ul {
             display: flex;
             flex-direction: column;
@@ -106,6 +100,7 @@
             padding: 0;
             text-align: right;
         }
+
         .nav-menu a {
             text-decoration: none;
             color: #fff;
@@ -113,11 +108,11 @@
             font-weight: normal;
             transition: color 0.3s;
         }
+
         .nav-menu a:hover {
             color: #aaa;
         }
 
-        /* Intro page specific styles */
         .intro-overlay {
             position: absolute;
             top: 0;
@@ -127,14 +122,13 @@
             background-color: rgba(0, 0, 0, 0.5);
         }
 
-        /* Other styles */
         .content-wrapper {
             max-width: 700px;
             padding: 2rem;
         }
 
         /* Styles for the paintings section and cards */
-        #paintings-section.active {
+        #paintings-section {
             scroll-snap-type: y mandatory;
         }
 
@@ -250,10 +244,10 @@
 
     <nav id="main-nav" class="nav-menu">
         <ul>
-            <li><a href="#" data-target="intro-page" class="nav-link">Home</a></li>
-            <li><a href="#" data-target="paintings-section" class="nav-link">Paintings</a></li>
-            <li><a href="#" data-target="about-page" class="nav-link">About</a></li>
-            <li><a href="#" data-target="contact-page" class="nav-link">Contact</a></li>
+            <li><a href="#intro-page" class="nav-link">Home</a></li>
+            <li><a href="#paintings-section" class="nav-link">Paintings</a></li>
+            <li><a href="#about-page" class="nav-link">About</a></li>
+            <li><a href="#contact-page" class="nav-link">Contact</a></li>
         </ul>
     </nav>
 
@@ -278,40 +272,29 @@
         const navLinks = document.querySelectorAll('.nav-link');
         const hamburgerIcon = document.getElementById('hamburger-icon');
         const closeIcon = document.getElementById('close-icon');
-        const sections = document.querySelectorAll('.section');
 
-        function showSection(targetId) {
-            sections.forEach(section => {
-                section.classList.remove('active');
-            });
-            const targetSection = document.getElementById(targetId);
-            if (targetSection) {
-                targetSection.classList.add('active');
-            }
-        }
-
+        // Toggle mobile navigation menu
         menuToggle.addEventListener('click', () => {
             mainNav.classList.toggle('active');
             hamburgerIcon.classList.toggle('hidden');
             closeIcon.classList.toggle('hidden');
         });
 
+        // Scroll to the correct section when a nav link is clicked
         navLinks.forEach(link => {
             link.addEventListener('click', (event) => {
                 event.preventDefault();
-                const targetId = link.getAttribute('data-target');
-                showSection(targetId);
+                const targetId = link.getAttribute('href').substring(1);
+                document.getElementById(targetId).scrollIntoView({ behavior: 'smooth' });
+                
+                // Close menu after clicking a link
                 mainNav.classList.remove('active');
                 hamburgerIcon.classList.remove('hidden');
                 closeIcon.classList.add('hidden');
             });
         });
 
-        // Set the initial active section on page load
-        document.addEventListener('DOMContentLoaded', () => {
-            showSection('intro-page');
-        });
-
+        // Form submission logic
         const contactForm = document.getElementById('contact-form');
         const formMessage = document.getElementById('form-message');
 
