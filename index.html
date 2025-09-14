@@ -17,7 +17,6 @@
             background-color: #000;
             color: #fff;
             font-family: 'Vollkorn', serif;
-            overflow-x: hidden;
             scroll-behavior: smooth;
         }
 
@@ -34,6 +33,13 @@
             z-index: -1;
         }
 
+        /* Container for all sections - now a scroll-snap container */
+        .content-container {
+            overflow-y: scroll;
+            height: 100vh;
+            scroll-snap-type: y mandatory;
+        }
+
         /* Full-page section styling */
         .section {
             height: 100vh;
@@ -45,6 +51,7 @@
             text-align: center;
             padding: 1.5rem;
             position: relative;
+            scroll-snap-align: start;
         }
 
         /* Specific styles for the intro page to ensure content is centered vertically */
@@ -128,10 +135,6 @@
         }
 
         /* Styles for the paintings section and cards */
-        #paintings-section {
-            scroll-snap-type: y mandatory;
-        }
-
         .painting-card {
             min-height: 100vh;
             display: flex;
@@ -154,7 +157,7 @@
 <body>
     <div id="global-background"></div>
 
-    <div class="content-container">
+    <main class="content-container">
         <section id="intro-page" class="section">
             <div class="intro-overlay"></div>
         </section>
@@ -240,7 +243,7 @@
                 </div>
             </div>
         </section>
-    </div>
+    </main>
 
     <nav id="main-nav" class="nav-menu">
         <ul>
@@ -280,14 +283,9 @@
             closeIcon.classList.toggle('hidden');
         });
 
-        // Scroll to the correct section when a nav link is clicked
+        // Close menu after clicking a link
         navLinks.forEach(link => {
-            link.addEventListener('click', (event) => {
-                event.preventDefault();
-                const targetId = link.getAttribute('href').substring(1);
-                document.getElementById(targetId).scrollIntoView({ behavior: 'smooth' });
-                
-                // Close menu after clicking a link
+            link.addEventListener('click', () => {
                 mainNav.classList.remove('active');
                 hamburgerIcon.classList.remove('hidden');
                 closeIcon.classList.add('hidden');
