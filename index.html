@@ -20,6 +20,19 @@
             overflow: hidden;
         }
 
+        /* Dedicated full-screen background layer */
+        #global-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('bobo.jpg');
+            background-size: cover;
+            background-position: center;
+            z-index: -1; /* Ensures it's behind all content */
+        }
+
         /* Container for all sections - now a CSS Grid */
         .content-container {
             position: relative; /* Use relative to contain absolute sections */
@@ -106,9 +119,7 @@
 
         /* Intro page specific styles */
         #intro-page {
-            background-image: url('bobo.jpg');
-            background-size: cover;
-            background-position: center;
+            /* The background is now on #global-background */
         }
 
         .intro-overlay {
@@ -151,7 +162,8 @@
     </style>
 </head>
 <body>
-
+    <div id="global-background"></div>
+    
     <div class="content-container">
         <section id="intro-page" class="section active">
             <div class="intro-overlay"></div>
@@ -274,15 +286,12 @@
 
         function showSection(targetId) {
             sections.forEach(section => {
-                section.style.zIndex = '0';
                 section.classList.remove('active');
             });
             const targetSection = document.getElementById(targetId);
             if (targetSection) {
-                targetSection.style.zIndex = '1';
                 targetSection.classList.add('active');
                 
-                // Use a minimal timeout to ensure the DOM has updated
                 setTimeout(() => {
                     if (targetId === 'paintings-section') {
                         const firstPainting = document.getElementById('painting-1');
@@ -313,7 +322,6 @@
             });
         });
 
-        // Initialize with the intro page
         showSection('intro-page');
 
         const contactForm = document.getElementById('contact-form');
