@@ -51,8 +51,18 @@
             background-color: transparent;
         }
 
+        /* New container to hold the image and buttons together for positioning */
+        .image-with-buttons-container {
+            position: relative;
+            max-width: 100%;
+            max-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
         /* Front page image styling - does NOT enlarge or stretch */
-        #intro-page .front-page-image {
+        .image-with-buttons-container .front-page-image {
             display: block;
             max-width: 100%;
             max-height: 100vh;
@@ -73,26 +83,28 @@
         .intro-nav-buttons {
             position: absolute;
             bottom: 2rem;
-            left: 50%;
-            transform: translateX(-50%);
+            left: 2rem;
+            right: 2rem;
             display: flex;
-            gap: 1.5rem;
+            justify-content: space-between;
+            align-items: center;
             z-index: 20;
         }
 
         .intro-nav-buttons a {
-            padding: 0.75rem 1.5rem;
-            background-color: #fff;
-            color: #000;
+            padding: 0.5rem 1rem;
+            background-color: transparent; /* No background color */
+            color: #000; /* Pure black text */
+            font-size: 0.75rem; /* Smaller text */
             font-weight: bold;
             text-decoration: none;
-            border-radius: 0.5rem;
+            border-radius: 0.25rem;
             transition: background-color 0.3s, color 0.3s;
         }
 
         .intro-nav-buttons a:hover {
-            background-color: #000;
-            color: #fff;
+            background-color: #000; /* Black background on hover */
+            color: #fff; /* White text on hover */
         }
         
         /* Styling for each individual painting section */
@@ -215,14 +227,16 @@
     <main class="content-container scroll-disabled">
 
         <section id="intro-page" class="section">
-            <img src="bobobobo.jpg" alt="Front Page Background" class="front-page-image">
-            <div class="intro-overlay"></div>
-            <div class="intro-nav-buttons">
-                <a href="#intro-page">Home</a>
-                <a href="#painting-1">Paintings</a>
-                <a href="#about-page">About</a>
-                <a href="#contact-page">Contact</a>
+            <div class="image-with-buttons-container">
+                <img src="bobobobo.jpg" alt="Front Page Background" class="front-page-image">
+                <div class="intro-nav-buttons">
+                    <a href="#intro-page">Home</a>
+                    <a href="#painting-1">Paintings</a>
+                    <a href="#about-page">About</a>
+                    <a href="#contact-page">Contact</a>
+                </div>
             </div>
+            <div class="intro-overlay"></div>
         </section>
 
         <section id="painting-1" class="painting-section">
