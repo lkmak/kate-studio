@@ -9,23 +9,47 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Vollkorn:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
     <style>
-        body {
-            font-family: 'Vollkorn', serif;
-            overflow: hidden; /* Prevent scrolling on the body */
+        /* ... Updated CSS from above ... */
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
         }
-        /* Page styling */
+
         .section {
             min-height: 100vh;
             padding-top: 6rem;
-            display: none; /* Hide all sections by default */
+            display: none;
         }
-        /* Show the active section */
+
         .active-section {
             display: block;
         }
-        /* Intro page background */
+
+        #about-page {
+            background-color: #000;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        #about-page .content-wrapper {
+            position: relative;
+            z-index: 10;
+            max-width: 700px;
+            padding: 2rem;
+            border-radius: 1rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
         #intro-page {
-            background-image: url('bobo.jpg'); /* Make sure this image path is correct */
+            background-image: url('bobo.jpg');
             background-size: cover;
             background-position: center;
             position: relative;
@@ -34,7 +58,6 @@
             align-items: center;
             justify-content: center;
             text-align: center;
-            min-height: 100vh; /* Ensure intro page is always full screen */
         }
         .intro-overlay {
             position: absolute;
@@ -42,9 +65,8 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.5); /* A semi-transparent black overlay for text readability */
+            background-color: rgba(0, 0, 0, 0.5);
         }
-        /* New styles for image dimming on hover */
         .painting-card img {
             opacity: 0.5;
             transition: opacity 0.3s ease-in-out;
@@ -52,7 +74,7 @@
         .painting-card:hover img {
             opacity: 1.0;
         }
-        /* Styling for the bottom menu */
+
         .bottom-menu {
             position: fixed;
             bottom: 0;
@@ -62,6 +84,7 @@
             padding: 1rem 0;
             z-index: 100;
         }
+
         .bottom-menu ul {
             display: flex;
             justify-content: center;
@@ -70,12 +93,14 @@
             margin: 0;
             padding: 0;
         }
+
         .bottom-menu a {
             text-decoration: none;
             color: #ccc;
             font-size: 1rem;
             transition: color 0.3s;
         }
+
         .bottom-menu a.active,
         .bottom-menu a:hover {
             color: #fff;
@@ -91,7 +116,7 @@
     <main class="max-w-none">
         <section id="intro-page" class="section active-section">
             <div class="intro-overlay"></div>
-            </section>
+        </section>
 
         <section id="portfolio-page" class="section py-22 px-6">
             <div class="portfolio-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-24 max-w-7xl mx-auto">
@@ -211,29 +236,25 @@
             link.addEventListener('click', (event) => {
                 event.preventDefault();
 
-                // Hide all sections
                 sections.forEach(section => {
                     section.classList.remove('active-section');
-                    section.style.display = 'none'; // Explicitly hide
+                    section.style.display = 'none';
                 });
 
-                // Remove active class from all links
                 navLinks.forEach(navLink => {
                     navLink.classList.remove('active');
                 });
 
-                // Show the target section and add active class to the link
                 const targetId = link.getAttribute('data-target');
                 const targetSection = document.getElementById(targetId);
                 if (targetSection) {
                     targetSection.classList.add('active-section');
-                    targetSection.style.display = 'block'; // Explicitly show
+                    targetSection.style.display = 'block';
                 }
                 link.classList.add('active');
             });
         });
 
-        // Contact form submission handling
         contactForm.addEventListener('submit', async function(event) {
             event.preventDefault();
             
