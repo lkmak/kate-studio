@@ -27,6 +27,11 @@
             scroll-snap-type: y mandatory;
         }
 
+        /* Disables scrolling on the front page */
+        .scroll-disabled {
+            overflow: hidden !important;
+        }
+
         /* General section styling for full-page layout */
         .section {
             min-height: 100vh;
@@ -48,10 +53,9 @@
 
         /* Front page image styling - does NOT enlarge or stretch */
         #intro-page .front-page-image {
-            /* Position is removed, as flexbox will handle centering */
-            display: block; /* Ensures the image behaves as a block element */
-            max-width: 100%; /* Prevents it from going beyond the container */
-            max-height: 100vh; /* Prevents it from going beyond the viewport height */
+            display: block;
+            max-width: 100%;
+            max-height: 100vh;
             z-index: 0;
         }
 
@@ -63,6 +67,32 @@
             height: 100%;
             background-color: rgba(0, 0, 0, 0.2);
             z-index: 1;
+        }
+
+        /* Navigation buttons on the intro page */
+        .intro-nav-buttons {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 1.5rem;
+            z-index: 20;
+        }
+
+        .intro-nav-buttons a {
+            padding: 0.75rem 1.5rem;
+            background-color: #fff;
+            color: #000;
+            font-weight: bold;
+            text-decoration: none;
+            border-radius: 0.5rem;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .intro-nav-buttons a:hover {
+            background-color: #000;
+            color: #fff;
         }
         
         /* Styling for each individual painting section */
@@ -182,11 +212,17 @@
         </ul>
     </nav>
     
-    <main class="content-container">
+    <main class="content-container scroll-disabled">
 
         <section id="intro-page" class="section">
             <img src="bobobobo.jpg" alt="Front Page Background" class="front-page-image">
             <div class="intro-overlay"></div>
+            <div class="intro-nav-buttons">
+                <a href="#intro-page">Home</a>
+                <a href="#painting-1">Paintings</a>
+                <a href="#about-page">About</a>
+                <a href="#contact-page">Contact</a>
+            </div>
         </section>
 
         <section id="painting-1" class="painting-section">
@@ -280,11 +316,14 @@
 
     <script type="text/javascript">
         const mainNav = document.getElementById('main-nav');
+        const menuToggleContainer = document.querySelector('.menu-toggle-container');
         const menuToggle = document.getElementById('menu-toggle');
         const hamburgerIcon = document.getElementById('hamburger-icon');
         const closeIcon = document.getElementById('close-icon');
         const navLinks = document.querySelectorAll('.nav-link');
         const contentContainer = document.querySelector('.content-container');
+        const introNavButtons = document.querySelector('.intro-nav-buttons');
+        const introPage = document.getElementById('intro-page');
 
         // Toggle navigation menu visibility
         menuToggle.addEventListener('click', () => {
@@ -301,6 +340,24 @@
                 closeIcon.classList.add('hidden');
             });
         });
+
+        // Toggle menu icon visibility based on scroll position
+        contentContainer.addEventListener('scroll', () => {
+            if (contentContainer.scrollTop === 0) {
+                menuToggleContainer.style.display = 'none';
+                introNavButtons.style.display = 'flex';
+                contentContainer.classList.add('scroll-disabled');
+            } else {
+                menuToggleContainer.style.display = 'block';
+                introNavButtons.style.display = 'none';
+                contentContainer.classList.remove('scroll-disabled');
+            }
+        });
+
+        // Initial state check for page load
+        if (contentContainer.scrollTop === 0) {
+            menuToggleContainer.style.display = 'none';
+        }
 
         // Contact form submission handling
         const contactForm = document.getElementById('contact-form');
