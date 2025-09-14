@@ -27,7 +27,7 @@
             width: 100%;
             height: 100%;
             overflow-y: auto;
-            scroll-behavior: smooth; /* Smooth scrolling for navigation */
+            scroll-behavior: smooth;
             padding-bottom: 80px; /* Space for the fixed bottom menu */
         }
         
@@ -39,6 +39,9 @@
             align-items: center;
             justify-content: center;
             text-align: center;
+        }
+        .section:not(.active-section) {
+            display: none;
         }
 
         /* Fixed elements */
@@ -52,26 +55,34 @@
             z-index: 100;
         }
 
-        .back-nav-container {
+        .menu-toggle-container {
             position: fixed;
             top: 1.5rem;
             right: 1.5rem;
-            z-index: 100;
+            z-index: 101; /* Higher z-index to be on top of navigation */
         }
 
         /* Navigation menu styling */
         .nav-menu {
             position: fixed;
-            bottom: 0;
+            top: 0;
             left: 0;
             width: 100%;
-            background-color: #1a1a1a;
-            padding: 1rem 0;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.95);
+            display: flex;
+            align-items: center;
+            justify-content: center;
             z-index: 100;
+            transition: opacity 0.3s ease-in-out;
+        }
+        .nav-menu.hidden {
+            opacity: 0;
+            pointer-events: none;
         }
         .nav-menu ul {
             display: flex;
-            justify-content: center;
+            flex-direction: column;
             gap: 2rem;
             list-style: none;
             margin: 0;
@@ -79,14 +90,13 @@
         }
         .nav-menu a {
             text-decoration: none;
-            color: #ccc;
-            font-size: 1rem;
+            color: #fff;
+            font-size: 1.5rem;
+            font-weight: bold;
             transition: color 0.3s;
         }
-        .nav-menu a.active,
         .nav-menu a:hover {
-            color: #fff;
-            font-weight: bold;
+            color: #aaa;
         }
 
         /* Intro page specific styles */
@@ -126,7 +136,7 @@
     
     <div class="content-container">
 
-        <section id="intro-page" class="section">
+        <section id="intro-page" class="section active-section">
             <div class="intro-overlay"></div>
         </section>
 
@@ -228,10 +238,13 @@
         </ul>
     </nav>
 
-    <div id="back-nav" class="back-nav-container hidden">
+    <div class="menu-toggle-container">
         <button id="menu-toggle" class="text-white hover:text-gray-400 transition-colors duration-300 focus:outline-none">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8">
+            <svg id="hamburger-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+            </svg>
+            <svg id="close-icon" class="w-8 h-8 hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
             </svg>
         </button>
     </div>
@@ -243,54 +256,47 @@
     <script type="text/javascript">
         const contentContainer = document.querySelector('.content-container');
         const sections = document.querySelectorAll('.section');
-        const navMenu = document.getElementById('main-nav');
-        const backNav = document.getElementById('back-nav');
-        const navLinks = document.querySelectorAll('.nav-link');
+        const mainNav = document.getElementById('main-nav');
         const menuToggle = document.getElementById('menu-toggle');
-        const contactForm = document.getElementById('contact-form');
-        const formMessage = document.getElementById('form-message');
+        const navLinks = document.querySelectorAll('.nav-link');
+        const hamburgerIcon = document.getElementById('hamburger-icon');
+        const closeIcon = document.getElementById('close-icon');
 
         // Function to show a specific section
         function showSection(targetId) {
             sections.forEach(section => {
-                const sectionId = section.id;
-                if (sectionId === targetId) {
-                    section.style.display = 'flex';
-                } else {
-                    section.style.display = 'none';
-                }
+                section.classList.remove('active-section');
             });
-
-            // Show/hide the main navigation and back button
-            if (targetId === 'intro-page') {
-                navMenu.classList.remove('hidden');
-                backNav.classList.add('hidden');
-            } else {
-                navMenu.classList.add('hidden');
-                backNav.classList.remove('hidden');
-            }
+            document.getElementById(targetId).classList.add('active-section');
+            contentContainer.scrollTop = 0; // Scroll to top of new section
         }
 
-        // Handle navigation link clicks
+        // Initially show the intro page
+        showSection('intro-page');
+
+        // Toggle the navigation menu visibility
+        menuToggle.addEventListener('click', () => {
+            mainNav.classList.toggle('hidden');
+            hamburgerIcon.classList.toggle('hidden');
+            closeIcon.classList.toggle('hidden');
+        });
+
+        // Hide the navigation menu and show a section when a link is clicked
         navLinks.forEach(link => {
             link.addEventListener('click', (event) => {
                 event.preventDefault();
                 const targetId = link.getAttribute('data-target');
                 showSection(targetId);
-                contentContainer.scrollTop = 0; // Scroll to top of new section
+                mainNav.classList.add('hidden'); // Hide the menu after clicking a link
+                hamburgerIcon.classList.remove('hidden');
+                closeIcon.classList.add('hidden');
             });
         });
 
-        // Handle the back button click to show the main nav
-        menuToggle.addEventListener('click', () => {
-            showSection('intro-page');
-            contentContainer.scrollTop = 0;
-        });
-
-        // Initially show the intro page
-        showSection('intro-page');
-
         // Contact form submission handling
+        const contactForm = document.getElementById('contact-form');
+        const formMessage = document.getElementById('form-message');
+
         contactForm.addEventListener('submit', async function(event) {
             event.preventDefault();
             formMessage.textContent = 'Sending your message...';
