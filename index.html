@@ -281,14 +281,14 @@
             if (targetSection) {
                 targetSection.classList.add('active');
                 
-                // Use scrollIntoView to reliably show the top of the section
+                // Use scrollIntoView with 'auto' behavior for instant scrolling
                 if (targetId === 'paintings-section') {
                     const firstPainting = document.getElementById('painting-1');
                     if (firstPainting) {
-                        firstPainting.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        firstPainting.scrollIntoView({ behavior: 'auto', block: 'start' });
                     }
                 } else {
-                    targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    targetSection.scrollIntoView({ behavior: 'auto', block: 'start' });
                 }
             }
         }
