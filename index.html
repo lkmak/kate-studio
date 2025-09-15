@@ -36,16 +36,9 @@
             justify-content: center;
             text-align: center;
             position: relative;
-            scroll-snap-align: center;
+            scroll-snap-align: start;
         }
 
-        /* Ensure no padding on mobile that could interfere */
-        @media (max-width: 768px) {
-            .section {
-                padding: 0;
-            }
-        }
-        
         /* Intro page specific styling */
         #intro-page {
             overflow: hidden;
@@ -63,7 +56,7 @@
         /* Image styling - fixed size */
         .image-with-buttons-container .front-page-image {
             display: block;
-            width: 750px;
+            width: 1200px;
             height: auto;
             z-index: 0;
         }
@@ -88,7 +81,7 @@
             padding: 1.5rem;
             text-align: center;
             background-color: black;
-            scroll-snap-align: center;
+            scroll-snap-align: start;
         }
         
         .painting-section img {
@@ -120,6 +113,13 @@
             text-align: center;
         }
 
+        /* Mobile-specific fix for visual centering */
+        @media (max-width: 768px) {
+            .content-wrapper, .painting-section {
+                margin-top: -3rem; /* Visually shifts the content up */
+            }
+        }
+        
         /* Fixed elements */
         .fixed-footer, .menu-toggle-container, .nav-menu {
             position: fixed;
