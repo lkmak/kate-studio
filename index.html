@@ -43,6 +43,14 @@
             scroll-snap-align: start;
         }
 
+        /* Media Query for Mobile Devices */
+        @media (max-width: 768px) {
+            .section {
+                padding-top: 0;
+                padding-bottom: 0;
+            }
+        }
+
         /* Intro page specific styling */
         #intro-page {
             overflow: hidden;
@@ -60,7 +68,7 @@
         /* Image styling - fixed size */
         .image-with-buttons-container .front-page-image {
             display: block;
-            width: 600px;
+            width: 700px;
             height: auto;
             z-index: 0;
         }
