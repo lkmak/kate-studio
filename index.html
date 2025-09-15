@@ -54,18 +54,14 @@
         /* New container to hold the image and buttons together for positioning */
         .image-with-buttons-container {
             position: relative;
-            max-width: 100%;
-            max-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            width: 100%;
         }
 
-        /* Front page image styling - does NOT enlarge or stretch */
+        /* Front page image styling - now fits within the screen responsively */
         .image-with-buttons-container .front-page-image {
             display: block;
-            max-width: 100%;
-            max-height: 100vh;
+            width: 100%;
+            height: auto; /* The key to maintaining aspect ratio and scale */
             z-index: 0;
         }
 
@@ -82,9 +78,9 @@
         /* Navigation buttons on the intro page */
         .intro-nav-buttons {
             position: absolute;
-            bottom: 7.5vh; /* Responsive padding from the bottom */
-            left: 5vw;    /* Responsive padding from the left */
-            right: 5vw;   /* Responsive padding from the right */
+            bottom: 3rem; /* Reverted to consistent rem padding */
+            left: 2rem;
+            right: 2rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
