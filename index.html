@@ -27,11 +27,6 @@
             scroll-snap-type: y mandatory;
         }
 
-        /* Disables scrolling on the front page */
-        .scroll-disabled {
-            overflow: hidden !important;
-        }
-
         /* General section styling for full-page layout */
         .section {
             min-height: 100vh;
@@ -65,7 +60,7 @@
         /* Image styling - fixed size */
         .image-with-buttons-container .front-page-image {
             display: block;
-            width: 600px;
+            width: 1200px;
             height: auto;
             z-index: 0;
         }
@@ -78,33 +73,6 @@
             height: 100%;
             background-color: rgba(0, 0, 0, 0.2);
             z-index: 1;
-        }
-
-        /* Navigation buttons on the intro page */
-        .intro-nav-buttons {
-            position: absolute;
-            bottom: 3rem;
-            left: 2rem;
-            right: 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            z-index: 20;
-        }
-
-        .intro-nav-buttons a {
-            padding: 0.5rem 1rem;
-            background-color: transparent;
-            color: #000;
-            font-size: 0.75rem;
-            font-weight: bold;
-            text-decoration: none;
-            border-radius: 0.25rem;
-            transition: color 0.3s;
-        }
-
-        .intro-nav-buttons a:hover {
-            color: #888;
         }
         
         /* Styling for each individual painting section */
@@ -224,17 +192,11 @@
         </ul>
     </nav>
     
-    <main class="content-container scroll-disabled">
+    <main class="content-container">
 
         <section id="intro-page" class="section">
             <div class="image-with-buttons-container">
                 <img src="bobobobo.jpg" alt="Front Page Background" class="front-page-image">
-                <div class="intro-nav-buttons">
-                    <a href="#intro-page">Home</a>
-                    <a href="#painting-1">Paintings</a>
-                    <a href="#about-page">About</a>
-                    <a href="#contact-page">Contact</a>
-                </div>
             </div>
             <div class="intro-overlay"></div>
         </section>
@@ -336,7 +298,6 @@
         const closeIcon = document.getElementById('close-icon');
         const navLinks = document.querySelectorAll('.nav-link');
         const contentContainer = document.querySelector('.content-container');
-        const introNavButtons = document.querySelector('.intro-nav-buttons');
         const introPage = document.getElementById('intro-page');
 
         // Toggle navigation menu visibility
@@ -354,23 +315,6 @@
                 closeIcon.classList.add('hidden');
             });
         });
-
-        // Toggle menu icon visibility based on scroll position
-        contentContainer.addEventListener('scroll', () => {
-            if (contentContainer.scrollTop === 0) {
-                introNavButtons.style.display = 'flex';
-                contentContainer.classList.add('scroll-disabled');
-            } else {
-                menuToggleContainer.style.display = 'block';
-                introNavButtons.style.display = 'none';
-                contentContainer.classList.remove('scroll-disabled');
-            }
-        });
-
-        // Initial state check for page load
-        if (contentContainer.scrollTop === 0) {
-            introNavButtons.style.display = 'flex';
-        }
     </script>
 </body>
 </html>
