@@ -58,12 +58,14 @@
         .image-with-buttons-container {
             position: relative;
             width: 100%;
+            display: flex;
+            justify-content: center;
         }
 
-        /* Image styling - always scales proportionally */
+        /* Image styling - fixed size */
         .image-with-buttons-container .front-page-image {
             display: block;
-            width: 100%;
+            width: 1200px; /* Fixed width to prevent resizing */
             height: auto;
             z-index: 0;
         }
@@ -356,7 +358,6 @@
         // Toggle menu icon visibility based on scroll position
         contentContainer.addEventListener('scroll', () => {
             if (contentContainer.scrollTop === 0) {
-                // The menu icon is now visible by default
                 introNavButtons.style.display = 'flex';
                 contentContainer.classList.add('scroll-disabled');
             } else {
@@ -368,8 +369,6 @@
 
         // Initial state check for page load
         if (contentContainer.scrollTop === 0) {
-            // No need to hide the menu icon here anymore
-            // We just need to make sure the intro buttons are visible
             introNavButtons.style.display = 'flex';
         }
     </script>
