@@ -51,18 +51,35 @@
             background-color: transparent;
         }
 
-        /* New container to hold the image and buttons together for positioning */
+        /* Container for the image and buttons - BASE (LAPTOP) LAYOUT */
         .image-with-buttons-container {
             position: relative;
             width: 100%;
         }
 
-        /* Front page image styling - now fits within the screen responsively */
+        /* Image styling - BASE (LAPTOP) LAYOUT */
         .image-with-buttons-container .front-page-image {
             display: block;
             width: 100%;
-            height: auto; /* The key to maintaining aspect ratio and scale */
+            height: auto;
             z-index: 0;
+        }
+
+        /* MOBILE LAYOUT - FOR SCREENS 768PX AND SMALLER */
+        @media (max-width: 768px) {
+            .image-with-buttons-container {
+                height: 100vh;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                overflow: hidden;
+            }
+
+            .image-with-buttons-container .front-page-image {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
         }
 
         .intro-overlay {
@@ -78,7 +95,7 @@
         /* Navigation buttons on the intro page */
         .intro-nav-buttons {
             position: absolute;
-            bottom: 3rem; /* Reverted to consistent rem padding */
+            bottom: 3rem;
             left: 2rem;
             right: 2rem;
             display: flex;
